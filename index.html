@@ -1,70 +1,211 @@
-"This is not for you." - Mark Z. Danielewski
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes</title>
+    <style>
+        :root {
+            /* Fall Palette */
+            --bg-color: #0f0d0c;      /* Deep midnight brown */
+            --text-color: #d4c4a8;    /* Dried parchment */
+            --accent-color: #8b4513;  /* Saddle brown / Rust */
+            --dim-text: #5e5443;      /* Wet earth */
+            --highlight: #d2691e;     /* Burnt orange */
+        }
 
-"Not all hells are created equal." - Stuart Turton
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
 
-“Why did god create a dual universe? So he might say, "Be not like me. I am alone." And it might be heard.” - Mark Z Danielewski
+        /* Subtle falling animation for atmospheric effect */
+        .leaf {
+            position: fixed;
+            top: -10%;
+            color: var(--dim-text);
+            font-size: 1.5rem;
+            user-select: none;
+            pointer-events: none;
+            z-index: -1;
+            animation: fall 10s linear infinite;
+        }
 
-“What at all can we ever really possess?” - Mark Z Danielewski
+        @keyframes fall {
+            0% { transform: translateY(0vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
 
-“We cannot rest within those walls, we have to struggle past them.” - Mark Z Danielewski
+        .container {
+            max-width: 750px;
+            border: 1px solid #2a241e;
+            padding: 30px;
+            background: linear-gradient(180deg, #161310 0%, #0f0d0c 100%);
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            position: relative;
+        }
 
-“Why did god create a dual universe? So he might say, "Be not like me. I am alone." And it might be heard.” - Mark Z Danielewski
+        h1 {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--highlight);
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
 
-“What at all can we ever really possess?” - Mark Z Danielewski
+        .quote-block {
+            margin-bottom: 45px;
+            position: relative;
+            padding-left: 15px;
+            border-left: 2px solid var(--accent-color);
+        }
 
-“We cannot rest within those walls, we have to struggle past them.” - Mark Z Danielewski
+        .quote-text {
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
 
-“This wasn't necessary. It could have been avoided. We didn't need to go through all this.” - Mark Z Danielweski
-“I lost sight of those dreams.” - Mark Z Danielewski
+        .quote-block:hover .quote-text {
+            color: #fff;
+        }
 
-“I know I am too late. I'm lost inside and no longer convinced there's a way out.” - Mark Z Danielewski
+        .author {
+            color: var(--dim-text);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
 
-“Quite a few people have slept and suffered within those walls.” - Mark Z Danielewski
+        /* Flickering light effect */
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
 
-“So many voices. Not that I'm unfamiliar with voices.” - Mark Z Danielewski
+        .container {
+            animation: flicker 6s infinite ease-in-out;
+        }
 
-“Death finally saw to that.” - Mark Z Danielewski
-“No better book ends than two walls.” - Mark Z Danielweski
+    </style>
+</head>
+<body>
 
-“Worse, you'll realize it's always been shifting.” - Mark Z Danielewski
+<div class="leaf" style="left: 10%; animation-delay: 0s;">🍂</div>
+<div class="leaf" style="left: 30%; animation-delay: 4s;">🍁</div>
+<div class="leaf" style="left: 70%; animation-delay: 2s;">🍂</div>
+<div class="leaf" style="left: 90%; animation-delay: 6s;">🍁</div>
 
-“We fear the dark because it contains the unknown, but what we fear more is what we bring into it.” - Mark Z Danielewski
+<div class="container">
+    <h1>Echoes</h1>
 
-“Funny how the lie and the truth are nearly always the same.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“No better book ends than two walls.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“We all create stories to protect ourselves” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“Worse, you'll realize it's always been shifting.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“Loss is not known at once. It is a debt that accumulates.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“We fear the dark because it contains the unknown, but what we fear more is what we bring into it.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“Is it possible to love something so much, you imagine it wants to destroy you only because it has denied you?” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“Funny how the lie and the truth are nearly always the same.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“We all create stories to protect ourselves” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“We all create stories to protect ourselves.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“And where there is no Echo there is no description of space or love. There is only silence.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“Loss is not known at once. It is a debt that accumulates.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“The gates of hell will open when you get there.” - unknown
+    <div class="quote-block">
+        <span class="quote-text">“Is it possible to love something so much, you imagine it wants to destroy you only because it has denied you?”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“Just silence and all its consequences.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“And where there is no Echo there is no description of space or love. There is only silence.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“We can't rewind; we've gone too far.” - The Buggles
+    <div class="quote-block">
+        <span class="quote-text">“Just silence and all its consequences.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“Eventually all worlds meet demolition.” - The Stupendium 
+    <div class="quote-block">
+        <span class="quote-text">“A mockery of meaning where meaning had never been needed before.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“God has truly lost.” - unknown
+    <div class="quote-block">
+        <span class="quote-text">“Every selfless action is truly a selfish action.”</span>
+        <span class="author">— Mark Z. Danielewski</span>
+    </div>
 
-“The world you were born in no longer exists.” - unknown
+    <div class="quote-block">
+        <span class="quote-text">“The gates of hell will open when you get there.”</span>
+        <span class="author">— Unknown</span>
+    </div>
 
-“A mockery of meaning where meaning had never been needed before.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“God has truly lost.”</span>
+        <span class="author">— Unknown</span>
+    </div>
 
-“This is the way the world ends, not with a bang but a whimper” - unknown
+    <div class="quote-block">
+        <span class="quote-text">“The world you were born in no longer exists.”</span>
+        <span class="author">— Unknown</span>
+    </div>
 
-“Every selfless action is truly a selfish action.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“The light inside has broken but I still work.”</span>
+        <span class="author">— Unknown</span>
+    </div>
 
-“The light inside has broken but I still work.” - unknown 
-ore.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“We can't rewind; we've gone too far.”</span>
+        <span class="author">— The Buggles</span>
+    </div>
 
-“This is the way the world ends, not with a bang but a whimper” - unknown
+    <div class="quote-block">
+        <span class="quote-text">“Eventually all worlds meet demolition.”</span>
+        <span class="author">— The Stupendium</span>
+    </div>
 
-“Every selfless action is truly a selfish action.” - Mark Z Danielewski
+    <div class="quote-block">
+        <span class="quote-text">“This is the way the world ends, not with a bang but a whimper.”</span>
+        <span class="author">— T.S. Eliot</span>
+    </div>
 
-“The light inside has broken but I still work.” - unknown 
+</div>
+
+</body>
+</html>
