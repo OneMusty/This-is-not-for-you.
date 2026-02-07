@@ -6,12 +6,11 @@
     <title>Echoes</title>
     <style>
         :root {
-            /* Fall Palette */
-            --bg-color: #0f0d0c;      /* Deep midnight brown */
-            --text-color: #d4c4a8;    /* Dried parchment */
-            --accent-color: #8b4513;  /* Saddle brown / Rust */
-            --dim-text: #5e5443;      /* Wet earth */
-            --highlight: #d2691e;     /* Burnt orange */
+            --bg-color: #0f0d0c;
+            --text-color: #d4c4a8;
+            --accent-color: #8b4513;
+            --dim-text: #5e5443;
+            --highlight: #d2691e;
         }
 
         body {
@@ -24,26 +23,33 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevents wind from creating a scrollbar */
         }
 
-        /* Subtle falling animation for atmospheric effect */
         .leaf {
             position: fixed;
             top: -10%;
-            color: var(--dim-text);
-            font-size: 1.5rem;
             user-select: none;
             pointer-events: none;
             z-index: -1;
-            animation: fall 10s linear infinite;
+            /* Combined fall and drift animation */
+            animation-name: fallAndDrift;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
         }
 
-        @keyframes fall {
-            0% { transform: translateY(0vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        @keyframes fallAndDrift {
+            0% { 
+                transform: translateY(0vh) translateX(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { 
+                /* The var(--drift) is set by JavaScript for unique paths */
+                transform: translateY(110vh) translateX(var(--drift)) rotate(720deg); 
+                opacity: 0; 
+            }
         }
 
         .container {
@@ -53,6 +59,7 @@
             background: linear-gradient(180deg, #161310 0%, #0f0d0c 100%);
             box-shadow: 0 0 30px rgba(0,0,0,0.7);
             position: relative;
+            animation: flicker 6s infinite ease-in-out;
         }
 
         h1 {
@@ -68,7 +75,6 @@
 
         .quote-block {
             margin-bottom: 45px;
-            position: relative;
             padding-left: 15px;
             border-left: 2px solid var(--accent-color);
         }
@@ -77,11 +83,6 @@
             font-size: 1.1rem;
             display: block;
             margin-bottom: 8px;
-            transition: color 0.3s ease;
-        }
-
-        .quote-block:hover .quote-text {
-            color: #fff;
         }
 
         .author {
@@ -92,25 +93,49 @@
             font-style: italic;
         }
 
-        /* Flickering light effect */
         @keyframes flicker {
-            0% { opacity: 0.98; }
-            50% { opacity: 1; }
-            100% { opacity: 0.98; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.96; }
         }
-
-        .container {
-            animation: flicker 6s infinite ease-in-out;
-        }
-
     </style>
 </head>
 <body>
 
-<div class="leaf" style="left: 10%; animation-delay: 0s;">🍂</div>
-<div class="leaf" style="left: 30%; animation-delay: 4s;">🍁</div>
-<div class="leaf" style="left: 70%; animation-delay: 2s;">🍂</div>
-<div class="leaf" style="left: 90%; animation-delay: 6s;">🍁</div>
+<script>
+    function createLeaf() {
+        const leafIcons = ['🍂', '🍁'];
+        const leaf = document.createElement('div');
+        
+        leaf.className = 'leaf';
+        leaf.innerText = leafIcons[Math.floor(Math.random() * leafIcons.length)];
+        
+        // Random horizontal start
+        leaf.style.left = Math.random() * 100 + "vw";
+        
+        // Random wind drift (between -150px and 150px)
+        const driftAmount = (Math.random() * 300 - 150) + "px";
+        leaf.style.setProperty('--drift', driftAmount);
+        
+        // Random speed
+        const duration = Math.random() * 7 + 8; // 8 to 15 seconds
+        leaf.style.animationDuration = duration + "s";
+        
+        // Random scale
+        const size = (Math.random() * 0.8 + 0.7); // 0.7x to 1.5x
+        leaf.style.transform = `scale(${size})`;
+
+        document.body.appendChild(leaf);
+
+
+        setTimeout(() => {
+            leaf.remove();
+        }, duration * 1000);
+    }
+
+    // Spawn leaf every 700ms for a lush feel
+            const ddd = Math.floor(Math.random() * (1000 - 500 + 1) + 500);
+    setInterval(createLeaf, ddd);
+</script>
 
 <div class="container">
     <h1>Echoes</h1>
@@ -209,3 +234,5 @@
 
 </body>
 </html>
+
+
